@@ -10,19 +10,29 @@ exe を作らず PowerShell 7 のスクリプトとして動くので、スマ�
 - Windows 10 / 11
 - PowerShell 7
 
-## 使い方
+## インストール
 
-1. `MicMutePTT.ps1` を `C:\micmute` に置く
-2. 5行目の `$Key = 'F24'` を必要に応じて別のキーに変える（例: `CapsLock`、`RControlKey`、`Scroll`）
-3. PowerShell 7 で起動する
+PowerShell 7 で次を実行します。`-Key` には押している間だけマイクをオンにするキーを指定します（例: `F24`、`CapsLock`、`RControlKey`、`Scroll`）。
 
 ```powershell
-Start-Process pwsh -WindowStyle Hidden -ArgumentList '-NoProfile -File C:\micmute\MicMutePTT.ps1'
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/ikepupu/micmute-ptt/main/Install.ps1))) -Key F24
 ```
+
+これで次のことをまとめて行います。
+
+- `MicMutePTT.ps1` を `%LOCALAPPDATA%\Programs\MicMutePTT` に配置（`-InstallDir` で変更可）
+- Windows へのサインイン時に自動起動するよう登録
+- その場で起動
+
+キーを変えたいときや、新しい版に更新したいときも同じコマンドを実行します。
 
 終了するときは、トレイアイコンを右クリックして「終了」を選びます。終了するとマイクは起動前の状態に戻ります。
 
-ダウンロードしたファイルを使う場合は、先に `Unblock-File C:\micmute\MicMutePTT.ps1` でブロックを解除してください。
+## アンインストール
+
+```powershell
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/ikepupu/micmute-ptt/main/Install.ps1))) -Uninstall
+```
 
 ## 由来
 

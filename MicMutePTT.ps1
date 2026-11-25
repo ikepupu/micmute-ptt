@@ -2,14 +2,19 @@
 # 設定したキーを押している間だけマイクのミュートを解除する。状態はタスクバーのアイコンで表示。
 # MicMute.cs (AveYo / rjcncpt, MIT License) のマイク制御と Push-to-Talk 部分をもとにしている。
 
-$Key = 'F24'   # ← 使うキー（例: F24, CapsLock, RControlKey, Scroll）
+param(
+    # 押している間だけマイクをオンにするキー（例: F24, CapsLock, RControlKey, Scroll）
+    [string]$Key = 'F24'
+)
 
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Windows.Forms, System.Drawing
 
 # 二重起動防止
 $mutex = [System.Threading.Mutex]::new($false, 'Local\MicMutePTT')
-if (-not $mutex.WaitOne(0)) { return }
+try { $owned = $mutex.WaitOne(0) }
+catch [System.Threading.AbandonedMutexException] { $owned = $true }  # 前回が強制終了された場合
+if (-not $owned) { return }
 
 Add-Type -TypeDefinition @"
 using System;
