@@ -2,7 +2,7 @@
 # 設定したキーを押している間だけマイクのミュートを解除する。状態はタスクバーのアイコンで表示。
 # MicMute.cs (AveYo / rjcncpt, MIT License) のマイク制御と Push-to-Talk 部分をもとにしている。
 
-$Key = 'F13'   # ← 使うキー（例: F13, CapsLock, RControlKey, Scroll）
+$Key = 'F24'   # ← 使うキー（例: F24, CapsLock, RControlKey, Scroll）
 
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Windows.Forms, System.Drawing

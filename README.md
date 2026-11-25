@@ -13,7 +13,7 @@ exe を作らず PowerShell 7 のスクリプトとして動くので、スマ�
 ## 使い方
 
 1. `MicMutePTT.ps1` を `C:\micmute` に置く
-2. 5行目の `$Key = 'F13'` を使いたいキーに変える（例: `CapsLock`、`RControlKey`、`Scroll`）
+2. 5行目の `$Key = 'F24'` を必要に応じて別のキーに変える（例: `CapsLock`、`RControlKey`、`Scroll`）
 3. PowerShell 7 で起動する
 
 ```powershell
